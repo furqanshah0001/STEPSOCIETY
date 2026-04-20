@@ -1,0 +1,8 @@
+{
+  "name": "StepSociety",
+  "description": "A premium digital vault for your sneaker collection featuring Vibe Code generation for Instagram sharing.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": []
+}
