@@ -40,7 +40,11 @@ export function Auth() {
         toast.success("Check your email for the login link or verify to continue!");
       }
     } catch (error: any) {
-      toast.error(error.message || "An error occurred during authentication");
+      if (error.message === 'Failed to fetch') {
+        toast.error("Network error: Please check if your ad-blocker is disabling Supabase, or if your internet connection is stable. Also verify your Supabase URL in environment variables.");
+      } else {
+        toast.error(error.message || "An error occurred during authentication");
+      }
     } finally {
       setLoading(false);
     }
