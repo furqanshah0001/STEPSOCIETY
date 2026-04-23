@@ -21,7 +21,7 @@ export function Discover() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      className="pb-32 pt-6 md:pt-32 px-6 max-w-4xl mx-auto space-y-12"
+      className="pb-32 pt-24 md:pt-32 px-6 max-w-4xl mx-auto space-y-12"
     >
       <div className="flex flex-col gap-2 relative z-10 items-center justify-center text-center">
         <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-neon flex items-center justify-center gap-2">

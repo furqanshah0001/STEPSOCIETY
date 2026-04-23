@@ -88,7 +88,7 @@ export function AddShoe() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      className="pb-32 pt-6 md:pt-32 px-6 max-w-2xl mx-auto space-y-12"
+      className="pb-32 pt-24 md:pt-32 px-6 max-w-2xl mx-auto space-y-12"
     >
       <div className="flex flex-col gap-2">
         <button onClick={() => navigate(-1)} className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface transition-colors -ml-2 mb-4 md:hidden">
@@ -123,7 +123,6 @@ export function AddShoe() {
           <input 
             type="file" 
             accept="image/*" 
-            capture="environment" 
             className="hidden" 
             ref={fileInputRef}
             onChange={handleImageCapture}

@@ -35,18 +35,8 @@ export function Home() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      className="pb-32 pt-6 md:pt-32 px-6 max-w-7xl mx-auto space-y-12"
+      className="pb-32 pt-24 md:pt-32 px-6 max-w-7xl mx-auto space-y-12"
     >
-      {/* Mobile Top Header */}
-      <div className="md:hidden flex items-center justify-between mb-8">
-        <div className="flex items-center gap-2">
-          <Zap className="w-6 h-6 text-neon" fill="currentColor" />
-          <span className="text-xl font-black tracking-tighter uppercase italic text-white">
-            VIBECODE
-          </span>
-        </div>
-      </div>
-
       {/* Stats Board */}
       <section className="grid grid-cols-3 gap-3 md:gap-6">
         <div className="glass-card rounded-2xl p-4 md:p-8 flex flex-col justify-between relative overflow-hidden group">

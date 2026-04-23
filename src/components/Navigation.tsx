@@ -55,6 +55,18 @@ export function Navigation() {
         </div>
       </nav>
 
+      {/* Mobile Top Header */}
+      <nav className="md:hidden fixed top-0 left-0 right-0 h-16 bg-[#1A1A1A]/80 backdrop-blur-md border-b border-white/10 z-50 flex items-center justify-center">
+        <Link to="/" className="flex items-center gap-2">
+          <div className="w-6 h-6 bg-neon rounded-full flex items-center justify-center text-black">
+            <Zap className="w-3 h-3" fill="currentColor" />
+          </div>
+          <span className="text-lg font-black tracking-tighter uppercase italic text-white">
+            STEPSOCIETY
+          </span>
+        </Link>
+      </nav>
+
       {/* Mobile Bottom Nav */}
       <nav className="md:hidden fixed bottom-6 left-6 right-6 h-16 bg-[#1A1A1A] border border-white/10 rounded-full z-50 shadow-2xl flex items-center justify-around px-2">
         {[...links, { href: '/profile', label: 'Profile', icon: User }].map((link) => {

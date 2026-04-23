@@ -25,7 +25,7 @@ export default function Profile() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      className="pb-32 pt-6 md:pt-32 px-6 max-w-7xl mx-auto space-y-12"
+      className="pb-32 pt-24 md:pt-32 px-6 max-w-7xl mx-auto space-y-12"
     >
       <div>
          <h2 className="text-4xl md:text-7xl font-black italic tracking-tighter uppercase leading-none">Sys_Profile</h2>
