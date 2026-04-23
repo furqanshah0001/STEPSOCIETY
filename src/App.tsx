@@ -32,12 +32,17 @@ function AnimatedRoutes() {
 
 export default function App() {
   const hasSeenOnboarding = useShoeStore(state => state.hasSeenOnboarding);
+  const fetchShoes = useShoeStore(state => state.fetchShoes);
+  const clearShoes = useShoeStore(state => state.clearShoes);
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
+      if (session?.user) {
+        fetchShoes(session.user.id);
+      }
       setLoading(false);
     });
 
@@ -45,10 +50,15 @@ export default function App() {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
+      if (session?.user) {
+        fetchShoes(session.user.id);
+      } else {
+        clearShoes();
+      }
     });
 
     return () => subscription.unsubscribe();
-  }, []);
+  }, [fetchShoes, clearShoes]);
 
   if (loading) {
     return (
@@ -91,7 +101,7 @@ export default function App() {
       <footer className="fixed bottom-0 w-full p-4 border-t border-[#1A1A1A] flex justify-between text-[10px] font-mono text-white/30 uppercase tracking-[0.2em] bg-background/80 backdrop-blur-md z-40 hidden md:flex">
         <div>v1.0.4 - STREET_READY</div>
         <div><a href="#" className="hover:text-neon transition-colors">MADE FOR STEPPEDIN FANS</a></div>
-        <div>LOCAL_PERSIST_ACTIVE [OK]</div>
+        <div>CLOUD_SYNC_ACTIVE [OK]</div>
       </footer>
     </Router>
   );

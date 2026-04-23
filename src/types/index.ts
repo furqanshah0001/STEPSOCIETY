@@ -10,6 +10,7 @@ export type VibeTag =
 
 export interface Shoe {
   id: string;
+  user_id?: string;
   name: string;
   brand: string;
   price: number;
