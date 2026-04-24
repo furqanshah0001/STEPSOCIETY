@@ -1,12 +1,13 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Trash2, QrCode, Plus, Share, Zap, Edit2, Check, X as CloseIcon } from 'lucide-react';
+import { ArrowLeft, Trash2, QrCode, Plus, Share, Zap, Edit2, Check, X as CloseIcon, Heart } from 'lucide-react';
 import { useShoeStore } from '../store/useShoeStore';
 import { QRCard } from '../components/QRCard';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { cn } from '../lib/utils';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
+import { supabase } from '../lib/supabase';
 
 export function ShoeDetail() {
   const { id } = useParams();
@@ -19,6 +20,71 @@ export function ShoeDetail() {
   const shoe = shoes.find(s => s.id === id);
   const [editCondition, setEditCondition] = useState(shoe?.condition ?? 100);
   const [editNotes, setEditNotes] = useState(shoe?.cleaningNotes ?? '');
+
+  // Likes features
+  const [likesCount, setLikesCount] = useState(0);
+  const [likedByUsers, setLikedByUsers] = useState<string[]>([]);
+  const [isLikedByMe, setIsLikedByMe] = useState(false);
+  const [currentUserId, setCurrentUserId] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchLikes() {
+      if (!shoe?.is_public || !shoe?.id) return;
+
+      const { data: { session } } = await supabase.auth.getSession();
+      const userId = session?.user?.id;
+      if (userId) setCurrentUserId(userId);
+
+      const { data, error } = await supabase
+        .from('shoe_likes')
+        .select('*')
+        .eq('shoe_id', shoe.id);
+
+      if (!error && data) {
+        setLikesCount(data.length);
+        setIsLikedByMe(data.some(like => like.user_id === userId));
+        
+        const names = data.map(like => like.user_name).filter(Boolean) as string[];
+        // Filter out our own name to avoid weird UI or just show all
+        setLikedByUsers(names);
+      }
+    }
+    fetchLikes();
+  }, [shoe?.id, shoe?.is_public]);
+
+  const handleToggleLike = async () => {
+    if (!shoe || !currentUserId) return;
+    
+    // Fast path: optimistic UI
+    const currentlyLiked = isLikedByMe;
+    setIsLikedByMe(!currentlyLiked);
+    setLikesCount(prev => currentlyLiked ? prev - 1 : prev + 1);
+
+    if (currentlyLiked) {
+      const { error } = await supabase
+        .from('shoe_likes')
+        .delete()
+        .match({ shoe_id: shoe.id, user_id: currentUserId });
+      if (error) {
+        setIsLikedByMe(true);
+        setLikesCount(prev => prev + 1);
+        toast.error('Failed to unlike');
+      }
+    } else {
+      const { data: { session } } = await supabase.auth.getSession();
+      const userName = session?.user?.user_metadata?.username || 'Unknown';
+      const { error } = await supabase
+        .from('shoe_likes')
+        .insert({ shoe_id: shoe.id, user_id: currentUserId, user_name: userName });
+      if (error) {
+        setIsLikedByMe(false);
+        setLikesCount(prev => prev - 1);
+        toast.error('Failed to like');
+      } else {
+        setLikedByUsers(prev => [...prev, userName]);
+      }
+    }
+  };
 
   if (!shoe) {
     return (
@@ -236,6 +302,51 @@ export function ShoeDetail() {
             ))}
           </div>
         </div>
+
+        {/* Community Activity */}
+        {shoe.is_public && (
+          <div className="space-y-4">
+            <h3 className="text-[10px] font-bold uppercase tracking-widest text-foreground/50 flex items-center justify-between">
+              Community Activity
+              <div className="flex items-center gap-2">
+                <Heart className="w-3 h-3 text-red-500 fill-red-500/50" />
+                <span>{likesCount} {likesCount === 1 ? 'Like' : 'Likes'}</span>
+              </div>
+            </h3>
+            <div className="p-6 glass-card rounded-2xl border border-foreground/5 flex flex-col gap-4">
+              <div className="flex items-center justify-between">
+                <div className="text-xs font-bold text-foreground/80 uppercase tracking-widest">
+                  Publicly visible on feed
+                </div>
+                <button
+                  onClick={handleToggleLike}
+                  disabled={!currentUserId}
+                  className={cn(
+                    "w-12 h-12 rounded-full border flex items-center justify-center transition-all",
+                    isLikedByMe 
+                      ? "bg-red-500/10 border-red-500/30 text-red-500 hover:bg-red-500/20" 
+                      : "bg-surface border-foreground/10 text-foreground/50 hover:text-foreground hover:border-foreground/30 hover:bg-foreground/5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background focus:ring-neon disabled:opacity-50"
+                  )}
+                >
+                  <Heart className={cn("w-5 h-5", isLikedByMe && "fill-current")} />
+                </button>
+              </div>
+
+              {likedByUsers.length > 0 && (
+                <div className="pt-4 border-t border-surface">
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-foreground/50 mb-2">Liked by</p>
+                  <div className="flex flex-wrap gap-2">
+                    {likedByUsers.map((user, i) => (
+                      <span key={i} className="px-2 py-1 bg-surface border border-foreground/5 rounded text-[10px] uppercase font-bold text-foreground/70">
+                        @{user}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* Actions Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-8 border-t border-surface">

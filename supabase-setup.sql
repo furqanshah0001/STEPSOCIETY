@@ -31,9 +31,13 @@ ALTER TABLE public.shoes ENABLE ROW LEVEL SECURITY;
 CREATE TABLE IF NOT EXISTS public.shoe_likes (
     shoe_id UUID REFERENCES public.shoes(id) ON DELETE CASCADE,
     user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
+    user_name TEXT,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()),
     PRIMARY KEY (shoe_id, user_id)
 );
+
+-- Ensure new columns are added if the table already existed
+ALTER TABLE public.shoe_likes ADD COLUMN IF NOT EXISTS user_name TEXT;
 
 ALTER TABLE public.shoe_likes ENABLE ROW LEVEL SECURITY;
 

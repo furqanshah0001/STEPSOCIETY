@@ -105,9 +105,11 @@ export function Community() {
         setShoeLikes(prev => ({ ...prev, [shoeId]: (prev[shoeId] || 0) + 1 }));
       }
     } else {
+      const { data: { session } } = await supabase.auth.getSession();
+      const userName = session?.user?.user_metadata?.username || 'Unknown';
       const { error } = await supabase
         .from('shoe_likes')
-        .insert({ shoe_id: shoeId, user_id: currentUserId });
+        .insert({ shoe_id: shoeId, user_id: currentUserId, user_name: userName });
       if (error) {
         toast.error('Failed to like');
         // Revert UI on failure
