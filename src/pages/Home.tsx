@@ -43,20 +43,20 @@ export function Home() {
           <div className="absolute -right-4 -bottom-4 opacity-10 transition-opacity">
             <Zap className="w-32 h-32 text-neon" />
           </div>
-          <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-zinc-500 mb-2">The Vault</h3>
+          <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-foreground/50 mb-2">The Vault</h3>
           <div className="flex items-baseline gap-2">
             <span className="text-3xl md:text-5xl font-black tracking-tighter text-foreground">{shoes.length}</span>
             <span className="hidden md:inline text-neon text-xs font-black uppercase tracking-widest">Pairs</span>
           </div>
         </div>
         <div className="glass-card rounded-2xl p-4 md:p-8 flex flex-col justify-between relative overflow-hidden group">
-          <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-zinc-500 mb-2">Net Worth</h3>
+          <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-foreground/50 mb-2">Net Worth</h3>
           <div className="flex items-baseline gap-1">
             <span className="text-xl md:text-4xl font-black tracking-tighter text-neon">£{totalValue.toLocaleString()}</span>
           </div>
         </div>
         <div className="glass-card rounded-2xl p-4 md:p-8 flex flex-col justify-between relative overflow-hidden">
-          <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-zinc-500 mb-2">Footprint</h3>
+          <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-foreground/50 mb-2">Footprint</h3>
           <div className="flex items-baseline gap-1">
             <span className="text-xl md:text-4xl font-black tracking-tighter text-foreground">{(lifetimeSteps / 1000).toFixed(1)}k</span>
           </div>
@@ -67,11 +67,11 @@ export function Home() {
       <section className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
           <h2 className="text-4xl md:text-7xl font-black italic tracking-tighter uppercase leading-none">The Archive</h2>
-          <p className="text-white/40 font-medium text-sm mt-2 max-w-sm">Your curated collection of technical footwear and high-street rarities. Synced and verified.</p>
+          <p className="text-foreground/40 font-medium text-sm mt-2 max-w-sm">Your curated collection of technical footwear and high-street rarities. Synced and verified.</p>
         </div>
         <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
           <div className="relative">
-            <Search className="w-4 h-4 text-white/40 absolute left-4 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-foreground/40 absolute left-4 top-1/2 -translate-y-1/2" />
             <input 
               type="text" 
               placeholder="SEARCH VAULT..." 
@@ -94,7 +94,7 @@ export function Home() {
                 "whitespace-nowrap px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all",
                 activeFilter === tag 
                   ? "bg-neon text-black" 
-                  : "bg-surface border border-foreground/10 text-foreground/50 hover:text-foreground hover:border-white/30"
+                  : "bg-surface border border-foreground/10 text-foreground/50 hover:text-foreground hover:border-foreground/30"
               )}
             >
               {tag}
@@ -112,7 +112,7 @@ export function Home() {
                <Layers className="w-10 h-10 text-neon" />
             </div>
             <h3 className="text-2xl font-black italic uppercase tracking-tighter mb-2">Vault is Empty</h3>
-            <p className="text-white/40 mb-8 max-w-sm">No artifacts logged in the system. Start building your collection to unlock Vibe Codes and insights.</p>
+            <p className="text-foreground/40 mb-8 max-w-sm">No artifacts logged in the system. Start building your collection to unlock Vibe Codes and insights.</p>
             <Link to="/add" className="inline-flex items-center gap-2 px-8 py-4 bg-neon text-black rounded-full font-black uppercase tracking-widest hover:scale-105 transition-transform hover-neon-glow">
               <Plus className="w-5 h-5 -ml-1" />
               Add First Pair
@@ -126,7 +126,7 @@ export function Home() {
           ))}
         </div>
       ) : filteredShoes.length === 0 ? (
-         <div className="text-center py-16 text-white/40 font-mono text-sm uppercase tracking-widest">
+         <div className="text-center py-16 text-foreground/40 font-mono text-sm uppercase tracking-widest">
            No matching artifacts found.
          </div>
       ) : (
@@ -142,19 +142,19 @@ export function Home() {
                 transition={{ duration: 0.3, delay: index * 0.05 }}
               >
                 <Link to={`/shoe/${shoe.id}`} className="block group relative glass-card rounded-2xl overflow-hidden transition-all duration-300">
-                  <div className="aspect-[4/3] relative overflow-hidden bg-black">
+                  <div className="aspect-[4/3] relative overflow-hidden bg-surface">
                     <img 
                       src={shoe.image} 
                       alt={shoe.name} 
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
                     />
-                    <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-foreground/10">
+                    <div className="absolute top-4 left-4 bg-foreground/10 backdrop-blur-md px-3 py-1 rounded-full border border-foreground/10">
                       <span className="text-[10px] font-black text-neon uppercase tracking-widest">Wears: {shoe.wearCount}</span>
                     </div>
                     {shoe.verified && (
                       <div className="absolute top-4 right-4 bg-neon/10 backdrop-blur-xl px-3 py-1.5 rounded-full border border-neon/50 shadow-[0_0_15px_rgba(204,255,0,0.4)] flex items-center gap-1.5">
                         <Zap className="w-3 h-3 text-neon" fill="currentColor" />
-                        <span className="text-[9px] font-black text-neon uppercase tracking-widest text-[#CCFF00] drop-shadow-[0_0_5px_rgba(204,255,0,0.8)]">Verified</span>
+                        <span className="text-[9px] font-black text-neon uppercase tracking-widest drop-shadow-[0_0_5px_var(--color-neon-dim)]">Verified</span>
                       </div>
                     )}
                   </div>

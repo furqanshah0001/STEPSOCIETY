@@ -10,8 +10,8 @@ import { Onboarding } from './components/Onboarding';
 import { Home } from './pages/Home';
 import { AddShoe } from './pages/AddShoe';
 import { ShoeDetail } from './pages/ShoeDetail';
+import { Community } from './pages/Community';
 import Profile from './pages/Profile';
-import { Discover } from './pages/Discover';
 import { Auth } from './pages/Auth';
 
 function AnimatedRoutes() {
@@ -21,7 +21,7 @@ function AnimatedRoutes() {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
-        <Route path="/discover" element={<Discover />} />
+        <Route path="/community" element={<Community />} />
         <Route path="/add" element={<AddShoe />} />
         <Route path="/shoe/:id" element={<ShoeDetail />} />
         <Route path="/profile" element={<Profile />} />
@@ -96,7 +96,7 @@ export default function App() {
         <Toaster 
           theme="dark" 
           toastOptions={{
-            style: { background: '#1A1A1A', borderColor: '#CCFF00', color: '#fff', borderRadius: '1rem' },
+            style: { background: 'var(--surface)', borderColor: 'var(--color-neon)', color: 'var(--foreground)', borderRadius: '1rem' },
             className: 'font-sans font-bold uppercase tracking-widest text-xs'
           }} 
         />
@@ -110,7 +110,7 @@ export default function App() {
       <Toaster 
         theme="dark" 
         toastOptions={{
-          style: { background: '#1A1A1A', borderColor: '#CCFF00', color: '#fff', borderRadius: '1rem' },
+          style: { background: 'var(--surface)', borderColor: 'var(--color-neon)', color: 'var(--foreground)', borderRadius: '1rem' },
           className: 'font-sans font-bold uppercase tracking-widest text-xs'
         }} 
       />

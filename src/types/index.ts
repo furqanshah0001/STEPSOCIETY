@@ -28,6 +28,10 @@ export interface Shoe {
   condition?: number; // 0-100
   lastCleaned?: string; // ISO string format
   cleaningNotes?: string;
+
+  // Social features
+  is_public?: boolean;
+  owner_name?: string;
 }
 
 export interface DiscoverShoe extends Shoe {

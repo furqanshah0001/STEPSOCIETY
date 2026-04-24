@@ -46,7 +46,7 @@ export function Onboarding() {
           >
             {slides[step].icon}
             <h1 className="text-3xl font-black italic tracking-tighter uppercase mb-4">{slides[step].title}</h1>
-            <p className="text-white/60 font-medium">{slides[step].desc}</p>
+            <p className="text-foreground/60 font-medium">{slides[step].desc}</p>
           </motion.div>
         </AnimatePresence>
 

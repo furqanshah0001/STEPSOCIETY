@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Home, PlusSquare, User, Zap, Compass } from 'lucide-react';
+import { Home, PlusSquare, User, Zap, Globe } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { motion } from 'framer-motion';
 
@@ -8,7 +8,7 @@ export function Navigation() {
 
   const links = [
     { href: '/', label: 'Vault', icon: Home },
-    { href: '/discover', label: 'Feed', icon: Compass },
+    { href: '/community', label: 'Community', icon: Globe },
     { href: '/add', label: 'Drop', icon: PlusSquare },
   ];
 
@@ -78,7 +78,7 @@ export function Navigation() {
               to={link.href}
               className={cn(
                 "relative flex flex-col items-center justify-center w-14 h-14 rounded-full transition-all duration-300",
-                isActive ? "text-neon" : "text-zinc-500 hover:text-foreground"
+                isActive ? "text-neon" : "text-foreground/50 hover:text-foreground"
               )}
             >
               {isActive && (

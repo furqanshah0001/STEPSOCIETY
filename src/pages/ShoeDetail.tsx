@@ -22,7 +22,7 @@ export function ShoeDetail() {
 
   if (!shoe) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-zinc-500 font-bold uppercase tracking-widest text-sm">
+      <div className="min-h-screen flex items-center justify-center text-foreground/50 font-bold uppercase tracking-widest text-sm">
         Artifact Not Found
       </div>
     );
@@ -59,10 +59,10 @@ export function ShoeDetail() {
       className="pb-32 min-h-screen"
     >
       {/* Hero Image Section */}
-      <div className="relative aspect-square md:aspect-[21/9] w-full bg-black overflow-hidden border-b border-surface">
+      <div className="relative aspect-square md:aspect-[21/9] w-full bg-surface overflow-hidden border-b border-surface">
         <button 
           onClick={() => navigate(-1)} 
-          className="absolute top-6 left-6 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-black/40 backdrop-blur-md border border-foreground/10 hover:bg-foreground/10 transition-colors hover-neon-glow"
+          className="absolute top-6 left-6 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-foreground/5 backdrop-blur-md border border-foreground/10 hover:bg-foreground/10 transition-colors hover-neon-glow"
         >
           <ArrowLeft className="w-6 h-6 text-foreground" />
         </button>
@@ -70,7 +70,7 @@ export function ShoeDetail() {
         {shoe.verified && (
           <div className="absolute top-6 right-6 z-20 px-4 py-2 bg-neon/10 backdrop-blur-xl rounded-full border border-neon/50 shadow-[0_0_20px_rgba(204,255,0,0.4)] flex items-center gap-2">
             <Zap className="w-4 h-4 text-neon" fill="currentColor" />
-            <span className="text-xs font-black text-neon uppercase tracking-widest text-[#CCFF00] drop-shadow-[0_0_5px_rgba(204,255,0,0.8)]">SteppedIn Verified</span>
+            <span className="text-xs font-black text-neon uppercase tracking-widest drop-shadow-[0_0_5px_var(--color-neon-dim)]">SteppedIn Verified</span>
           </div>
         )}
         
@@ -89,7 +89,7 @@ export function ShoeDetail() {
             <span className="px-4 py-2 bg-surface backdrop-blur-md border border-foreground/10 rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-neon shadow-[0_0_15px_rgba(204,255,0,0.1)]">
               {shoe.brand}
             </span>
-            <div className="px-4 py-2 bg-surface border border-foreground/5 rounded-full text-xs font-bold uppercase tracking-widest text-zinc-300">
+            <div className="px-4 py-2 bg-surface border border-foreground/5 rounded-full text-xs font-bold uppercase tracking-widest text-foreground/80">
               Acquired: {format(new Date(shoe.purchaseDate), 'MMM yyyy')}
             </div>
           </div>
@@ -107,15 +107,15 @@ export function ShoeDetail() {
         <div className="grid grid-cols-2 gap-4">
           <div className="glass-card p-6 border-l-2 border-l-neon flex items-center justify-between group cursor-pointer hover-neon-glow" onClick={handleIncrement}>
             <div>
-              <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-1">Wear Count</p>
+              <p className="text-[10px] font-bold text-foreground/50 uppercase tracking-widest mb-1">Wear Count</p>
               <p className="text-4xl font-black">{shoe.wearCount}</p>
             </div>
             <div className="w-12 h-12 rounded-full bg-neon/10 flex items-center justify-center text-neon group-hover:bg-neon group-hover:text-black transition-colors">
               <Plus className="w-6 h-6" />
             </div>
           </div>
-          <div className="glass-card p-6 border-l-2 border-l-white/20">
-            <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-1">Value</p>
+          <div className="glass-card p-6 border-l-2 border-l-foreground/20">
+            <p className="text-[10px] font-bold text-foreground/50 uppercase tracking-widest mb-1">Value</p>
             <p className="text-4xl font-black italic">£{shoe.price.toLocaleString()}</p>
           </div>
         </div>
@@ -123,7 +123,7 @@ export function ShoeDetail() {
         {/* Maintenance Log */}
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Maintenance Log</h3>
+            <h3 className="text-[10px] font-bold uppercase tracking-widest text-foreground/50">Maintenance Log</h3>
             {!isEditingLog && (
               <button 
                 onClick={() => {
@@ -158,7 +158,7 @@ export function ShoeDetail() {
                   </p>
                 )}
                 {shoe.lastCleaned && (
-                  <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest mt-4">
+                  <p className="text-[10px] text-foreground/50 font-bold uppercase tracking-widest mt-4">
                     Last Cleaned: {format(new Date(shoe.lastCleaned), 'MMM dd, yyyy')}
                   </p>
                 )}
@@ -185,7 +185,7 @@ export function ShoeDetail() {
                     value={editNotes}
                     onChange={(e) => setEditNotes(e.target.value)}
                     placeholder="E.g., Used crep protect, scrubbed the soles..."
-                    className="w-full bg-black/50 border border-foreground/10 rounded-xl p-4 text-sm focus:outline-none focus:border-neon focus:ring-1 focus:ring-neon transition-all placeholder:text-zinc-700 min-h-[100px]"
+                    className="w-full bg-foreground/5 border border-foreground/10 rounded-xl p-4 text-sm focus:outline-none focus:border-neon focus:ring-1 focus:ring-neon transition-all placeholder:text-foreground/30 min-h-[100px]"
                   />
                 </div>
                 <div className="flex gap-2">
@@ -227,10 +227,10 @@ export function ShoeDetail() {
 
         {/* Tags */}
         <div className="space-y-4">
-          <h3 className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Aesthetic Signatures</h3>
+          <h3 className="text-[10px] font-bold uppercase tracking-widest text-foreground/50">Aesthetic Signatures</h3>
           <div className="flex flex-wrap gap-2">
             {shoe.tags.map(tag => (
-              <span key={tag} className="px-5 py-3 glass-card rounded-xl text-xs font-bold uppercase tracking-widest text-zinc-300 border-foreground/10 hover-neon-glow hover:text-neon">
+              <span key={tag} className="px-5 py-3 glass-card rounded-xl text-xs font-bold uppercase tracking-widest text-foreground/80 border-foreground/10 hover-neon-glow hover:text-neon">
                 {tag}
               </span>
             ))}
@@ -238,18 +238,29 @@ export function ShoeDetail() {
         </div>
 
         {/* Actions Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-8 border-t border-surface">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-8 border-t border-surface">
           <button 
             onClick={() => setShowQR(true)}
-            className="h-16 flex items-center justify-center gap-3 bg-neon text-black font-black uppercase tracking-[0.2em] rounded-2xl hover:scale-[1.02] active:scale-95 transition-all shadow-[0_0_30px_rgba(204,255,0,0.15)] hover-neon-glow"
+            className="md:col-span-1 h-16 flex items-center justify-center gap-3 bg-neon text-black font-black uppercase tracking-[0.2em] rounded-2xl hover:scale-[1.02] active:scale-95 transition-all shadow-[0_0_30px_rgba(204,255,0,0.15)] hover-neon-glow"
           >
             <QrCode className="w-5 h-5" />
             FLEX ON 'EM
           </button>
           
           <button 
+            onClick={() => {
+              updateShoe(shoe.id, { is_public: !shoe.is_public });
+              toast.success(shoe.is_public ? 'Artifact is now private' : 'Artifact is now public');
+            }}
+            className="md:col-span-1 h-16 flex items-center justify-center gap-3 glass-card text-foreground font-bold uppercase tracking-[0.2em] rounded-2xl border hover:border-foreground/30 transition-all hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+          >
+            <Share className="w-5 h-5" />
+            {shoe.is_public ? 'Make Private' : 'Make Public'}
+          </button>
+
+          <button 
             onClick={handleDelete}
-            className="h-16 flex items-center justify-center gap-3 bg-red-500/10 text-red-500 font-bold uppercase tracking-[0.2em] rounded-2xl border border-red-500/20 hover:bg-red-500 hover:text-foreground transition-all hover:shadow-[0_0_20px_rgba(239,68,68,0.2)]"
+            className="md:col-span-1 h-16 flex items-center justify-center gap-3 bg-red-500/10 text-red-500 font-bold uppercase tracking-[0.2em] rounded-2xl border border-red-500/20 hover:bg-red-500 hover:text-foreground transition-all hover:shadow-[0_0_20px_rgba(239,68,68,0.2)]"
           >
             <Trash2 className="w-5 h-5" />
             Purge Artifact

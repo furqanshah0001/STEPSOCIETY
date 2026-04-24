@@ -121,7 +121,7 @@ export default function Profile() {
         </div>
 
         <div className="space-y-4">
-          <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500">Preferences</h4>
+          <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground/50">Preferences</h4>
           <button 
             onClick={toggleTheme}
             className="w-full flex items-center justify-between p-4 glass-card hover-neon-glow group"
@@ -137,25 +137,25 @@ export default function Profile() {
         </div>
 
         <div className="space-y-4">
-          <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500">Account Credentials</h4>
+          <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground/50">Account Credentials</h4>
           <form onSubmit={handleUpdateAuth} className="space-y-4">
              <div>
-                <label className="block text-[10px] font-bold uppercase tracking-widest text-zinc-500 ml-1 mb-2">Email Address</label>
+                <label className="block text-[10px] font-bold uppercase tracking-widest text-foreground/50 ml-1 mb-2">Email Address</label>
                 <input
                    type="email"
                    value={newEmail}
                    onChange={(e) => setNewEmail(e.target.value)}
-                   className="w-full bg-black/10 dark:bg-black/50 border border-foreground/10 rounded-xl h-12 px-4 text-sm focus:outline-none focus:border-neon focus:ring-1 focus:ring-neon transition-all"
+                   className="w-full bg-foreground/5 border border-foreground/10 rounded-xl h-12 px-4 text-sm focus:outline-none focus:border-neon focus:ring-1 focus:ring-neon transition-all"
                    placeholder="Enter new email"
                 />
              </div>
              <div>
-                <label className="block text-[10px] font-bold uppercase tracking-widest text-zinc-500 ml-1 mb-2">New Password (leave blank to keep current)</label>
+                <label className="block text-[10px] font-bold uppercase tracking-widest text-foreground/50 ml-1 mb-2">New Password (leave blank to keep current)</label>
                 <input
                    type="password"
                    value={newPassword}
                    onChange={(e) => setNewPassword(e.target.value)}
-                   className="w-full bg-black/10 dark:bg-black/50 border border-foreground/10 rounded-xl h-12 px-4 text-sm focus:outline-none focus:border-neon focus:ring-1 focus:ring-neon transition-all"
+                   className="w-full bg-foreground/5 border border-foreground/10 rounded-xl h-12 px-4 text-sm focus:outline-none focus:border-neon focus:ring-1 focus:ring-neon transition-all"
                    placeholder="Enter new password"
                 />
              </div>
@@ -171,7 +171,7 @@ export default function Profile() {
         </div>
 
         <div className="space-y-4">
-          <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500">Data Management</h4>
+          <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground/50">Data Management</h4>
           <button 
             onClick={handleExport}
             disabled={shoes.length === 0}
@@ -184,7 +184,7 @@ export default function Profile() {
                 <p className="text-xs text-foreground/40">{shoes.length} artifacts encoded</p>
               </div>
             </div>
-            <Download className="w-5 h-5 text-zinc-500" />
+            <Download className="w-5 h-5 text-foreground/50" />
           </button>
         </div>
 

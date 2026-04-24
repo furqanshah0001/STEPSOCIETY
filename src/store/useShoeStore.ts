@@ -58,12 +58,16 @@ export const useShoeStore = create<ShoeStore>()(
           return;
         }
 
+        const ownerName = user.user_metadata?.username || 'Unknown';
+
         const newShoe = {
           ...shoeData,
           id: crypto.randomUUID(),
           wearCount: 0,
           createdAt: new Date().toISOString(),
-          user_id: user.id
+          user_id: user.id,
+          is_public: shoeData.is_public ?? false,
+          owner_name: ownerName
         };
 
         // Optimistic update

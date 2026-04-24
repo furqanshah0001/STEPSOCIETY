@@ -64,7 +64,7 @@ export function QRCard({ shoe, onClose }: { shoe: Shoe, onClose: () => void }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-3xl flex flex-col pt-6 md:pt-12 px-6 pattern-bg"
+      className="fixed inset-0 z-[100] bg-background/95 backdrop-blur-3xl flex flex-col pt-6 md:pt-12 px-6 pattern-bg"
     >
       <div className="flex justify-between items-center max-w-md mx-auto w-full mb-8 shrink-0">
         <button onClick={onClose} className="p-3 bg-foreground/10 rounded-full hover:bg-white/20 transition-colors">
@@ -95,7 +95,7 @@ export function QRCard({ shoe, onClose }: { shoe: Shoe, onClose: () => void }) {
           <div className="z-10 relative">
             <p className="text-neon font-mono text-[10px] tracking-[0.3em] uppercase mb-2">Stepped Card // ID-{shoe.id.slice(0,4)}</p>
             <h3 className="text-3xl font-black italic leading-none uppercase tracking-tighter mb-1 line-clamp-2">{shoe.name}</h3>
-            <p className="text-white/60 font-bold uppercase text-xs tracking-widest">{shoe.brand}</p>
+            <p className="text-foreground/60 font-bold uppercase text-xs tracking-widest">{shoe.brand}</p>
           </div>
 
           <div className="flex-1 flex items-center justify-center py-4 relative z-10">
@@ -134,7 +134,7 @@ export function QRCard({ shoe, onClose }: { shoe: Shoe, onClose: () => void }) {
 
             <div className="flex items-end justify-between">
               <div>
-                <p className="text-[10px] text-white/40 font-bold uppercase">Acquired Value</p>
+                <p className="text-[10px] text-foreground/40 font-bold uppercase">Acquired Value</p>
                 <p className="text-sm font-black italic text-neon">£{shoe.price}</p>
               </div>
               <div className="w-16 h-16 bg-white p-1 rounded-lg">
@@ -208,7 +208,7 @@ export function QRCard({ shoe, onClose }: { shoe: Shoe, onClose: () => void }) {
                 <div className="z-10 relative">
                   <p className="text-neon font-mono text-[10px] tracking-[0.3em] uppercase mb-2">Vibe Card // ID-{shoe.id.slice(0,4)}</p>
                   <h3 className="text-3xl font-black italic leading-none uppercase tracking-tighter mb-1 line-clamp-2">{shoe.name}</h3>
-                  <p className="text-white/60 font-bold uppercase text-xs tracking-widest">{shoe.brand}</p>
+                  <p className="text-foreground/60 font-bold uppercase text-xs tracking-widest">{shoe.brand}</p>
                 </div>
                 
                 <div className="flex-1 flex items-center justify-center py-4 relative z-10">

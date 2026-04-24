@@ -4,8 +4,8 @@
   --color-background: var(--bg);
   --color-surface: var(--surface);
   --color-foreground: var(--foreground);
-  --color-neon: #CCFF00;
-  --color-neon-dim: rgba(204, 255, 0, 0.15);
+  --color-neon: var(--neon);
+  --color-neon-dim: var(--neon-dim);
   
   --font-sans: "Space Grotesk", "Inter", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -19,6 +19,8 @@
     --bg: #0A0A0A;
     --surface: #1A1A1A;
     --foreground: #ffffff;
+    --neon: #CCFF00;
+    --neon-dim: rgba(204, 255, 0, 0.15);
     color-scheme: dark;
   }
   
@@ -26,6 +28,8 @@
     --bg: #f9fafb;
     --surface: #ffffff;
     --foreground: #111827;
+    --neon: #8bc300; /* Darker lime green for readability on light backgrounds */
+    --neon-dim: rgba(139, 195, 0, 0.15);
     color-scheme: light;
   }
 

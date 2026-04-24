@@ -79,7 +79,7 @@ export function Auth() {
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
               >
-                <label className="block text-[10px] font-bold uppercase tracking-widest text-zinc-500 ml-1 mb-2">Username</label>
+                <label className="block text-[10px] font-bold uppercase tracking-widest text-foreground/50 ml-1 mb-2">Username</label>
                 <div className="relative">
                   <User className="w-5 h-5 text-foreground/30 absolute left-4 top-1/2 -translate-y-1/2" />
                   <input
@@ -87,7 +87,7 @@ export function Auth() {
                     required={!isLogin}
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    className="w-full bg-black/50 border border-foreground/10 rounded-xl h-14 pl-12 pr-4 text-sm focus:outline-none focus:border-neon focus:ring-1 focus:ring-neon transition-all"
+                    className="w-full bg-foreground/5 border border-foreground/10 rounded-xl h-14 pl-12 pr-4 text-sm focus:outline-none focus:border-neon focus:ring-1 focus:ring-neon transition-all"
                     placeholder="Enter your username"
                   />
                 </div>
@@ -95,7 +95,7 @@ export function Auth() {
             )}
 
             <div>
-              <label className="block text-[10px] font-bold uppercase tracking-widest text-zinc-500 ml-1 mb-2">Email Address</label>
+              <label className="block text-[10px] font-bold uppercase tracking-widest text-foreground/50 ml-1 mb-2">Email Address</label>
               <div className="relative">
                 <Mail className="w-5 h-5 text-foreground/30 absolute left-4 top-1/2 -translate-y-1/2" />
                 <input
@@ -103,14 +103,14 @@ export function Auth() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-black/50 border border-foreground/10 rounded-xl h-14 pl-12 pr-4 text-sm focus:outline-none focus:border-neon focus:ring-1 focus:ring-neon transition-all"
+                  className="w-full bg-foreground/5 border border-foreground/10 rounded-xl h-14 pl-12 pr-4 text-sm focus:outline-none focus:border-neon focus:ring-1 focus:ring-neon transition-all"
                   placeholder="Enter your email"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-[10px] font-bold uppercase tracking-widest text-zinc-500 ml-1 mb-2">Password</label>
+              <label className="block text-[10px] font-bold uppercase tracking-widest text-foreground/50 ml-1 mb-2">Password</label>
               <div className="relative">
                 <Lock className="w-5 h-5 text-foreground/30 absolute left-4 top-1/2 -translate-y-1/2" />
                 <input
@@ -118,7 +118,7 @@ export function Auth() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full bg-black/50 border border-foreground/10 rounded-xl h-14 pl-12 pr-4 text-sm focus:outline-none focus:border-neon focus:ring-1 focus:ring-neon transition-all"
+                  className="w-full bg-foreground/5 border border-foreground/10 rounded-xl h-14 pl-12 pr-4 text-sm focus:outline-none focus:border-neon focus:ring-1 focus:ring-neon transition-all"
                   placeholder="••••••••"
                 />
               </div>
