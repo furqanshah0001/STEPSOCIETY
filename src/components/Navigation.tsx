@@ -21,7 +21,7 @@ export function Navigation() {
             <div className="w-10 h-10 bg-neon rounded-full flex items-center justify-center text-black">
               <Zap className="w-5 h-5" fill="currentColor" />
             </div>
-            <span className="text-2xl font-black tracking-tighter uppercase italic text-white">
+            <span className="text-2xl font-black tracking-tighter uppercase italic text-foreground">
               STEPSOCIETY
             </span>
           </Link>
@@ -34,7 +34,7 @@ export function Navigation() {
                   to={link.href}
                   className={cn(
                     "font-bold text-sm tracking-widest uppercase transition-all duration-300 relative",
-                    isActive ? "text-neon border-b-2 border-neon pb-1" : "text-white/50 hover:text-white pb-1 border-b-2 border-transparent"
+                    isActive ? "text-neon border-b-2 border-neon pb-1" : "text-foreground/50 hover:text-foreground pb-1 border-b-2 border-transparent"
                   )}
                 >
                   {link.label}
@@ -47,7 +47,7 @@ export function Navigation() {
               "p-2 rounded-lg border transition-all duration-300",
               location.pathname === '/profile' 
                 ? "bg-neon/10 border-neon text-neon" 
-                : "bg-surface border-white/10 text-white hover:bg-white/10 hover:border-white/20"
+                : "bg-surface border-foreground/10 text-foreground hover:bg-foreground/10 hover:border-foreground/20"
             )}>
               <User className="w-5 h-5" />
             </Link>
@@ -56,19 +56,19 @@ export function Navigation() {
       </nav>
 
       {/* Mobile Top Header */}
-      <nav className="md:hidden fixed top-0 left-0 right-0 h-16 bg-[#1A1A1A]/80 backdrop-blur-md border-b border-white/10 z-50 flex items-center justify-center">
+      <nav className="md:hidden fixed top-0 left-0 right-0 h-16 bg-surface/80 backdrop-blur-md border-b border-foreground/10 z-50 flex items-center justify-center">
         <Link to="/" className="flex items-center gap-2">
           <div className="w-6 h-6 bg-neon rounded-full flex items-center justify-center text-black">
             <Zap className="w-3 h-3" fill="currentColor" />
           </div>
-          <span className="text-lg font-black tracking-tighter uppercase italic text-white">
+          <span className="text-lg font-black tracking-tighter uppercase italic text-foreground">
             STEPSOCIETY
           </span>
         </Link>
       </nav>
 
       {/* Mobile Bottom Nav */}
-      <nav className="md:hidden fixed bottom-6 left-6 right-6 h-16 bg-[#1A1A1A] border border-white/10 rounded-full z-50 shadow-2xl flex items-center justify-around px-2">
+      <nav className="md:hidden fixed bottom-6 left-6 right-6 h-16 bg-surface border border-foreground/10 rounded-full z-50 shadow-2xl flex items-center justify-around px-2">
         {[...links, { href: '/profile', label: 'Profile', icon: User }].map((link) => {
           const Icon = link.icon;
           const isActive = location.pathname === link.href;
@@ -78,7 +78,7 @@ export function Navigation() {
               to={link.href}
               className={cn(
                 "relative flex flex-col items-center justify-center w-14 h-14 rounded-full transition-all duration-300",
-                isActive ? "text-neon" : "text-zinc-500 hover:text-white"
+                isActive ? "text-neon" : "text-zinc-500 hover:text-foreground"
               )}
             >
               {isActive && (

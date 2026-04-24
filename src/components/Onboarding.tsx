@@ -14,12 +14,12 @@ export function Onboarding() {
       desc: "Your premium digital vault for high-street rarities and technical footwear."
     },
     {
-      icon: <Camera className="w-16 h-16 text-white mx-auto mb-6" />,
+      icon: <Camera className="w-16 h-16 text-foreground mx-auto mb-6" />,
       title: "Archive Your Artifacts",
       desc: "Capture, log prices, and categorize your collection with custom aesthetic tags."
     },
     {
-      icon: <QrCode className="w-16 h-16 text-white mx-auto mb-6" />,
+      icon: <QrCode className="w-16 h-16 text-foreground mx-auto mb-6" />,
       title: "Generate Flex Codes",
       desc: "Export beautiful, glossy share cards perfectly sized for your next IG Story."
     }

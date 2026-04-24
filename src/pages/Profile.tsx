@@ -1,6 +1,7 @@
-import { Download, LibrarySquare, Zap, LogOut, Loader2, Save } from 'lucide-react';
+import { Download, LibrarySquare, Zap, LogOut, Loader2, Save, Moon, Sun } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useShoeStore } from '../store/useShoeStore';
+import { useThemeStore } from '../store/themeStore';
 import { toast } from 'sonner';
 import { supabase } from '../lib/supabase';
 import { useEffect, useState } from 'react';
@@ -8,6 +9,7 @@ import { Session } from '@supabase/supabase-js';
 
 export default function Profile() {
   const shoes = useShoeStore(state => state.shoes);
+  const { isLightMode, toggleTheme } = useThemeStore();
   const [session, setSession] = useState<Session | null>(null);
   const [newEmail, setNewEmail] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -87,6 +89,12 @@ export default function Profile() {
     }
   };
 
+  const createdAt = session?.user?.created_at ? new Date(session.user.created_at).toLocaleDateString(undefined, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }) : 'Unknown';
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -96,19 +104,36 @@ export default function Profile() {
     >
       <div>
          <h2 className="text-4xl md:text-7xl font-black italic tracking-tighter uppercase leading-none">Sys_Profile</h2>
-         <p className="text-white/40 font-medium text-sm mt-2 max-w-sm">Manage your configuration and export vault data.</p>
+         <p className="text-foreground/40 font-medium text-sm mt-2 max-w-sm">Manage your configuration and export vault data.</p>
       </div>
 
       <div className="glass-card p-6 md:p-8 max-w-2xl space-y-8">
         <div className="flex items-center gap-4 mb-4">
-          <div className="w-16 h-16 bg-surface rounded-full flex items-center justify-center border border-white/10 shrink-0 relative overflow-hidden">
+          <div className="w-16 h-16 bg-surface rounded-full flex items-center justify-center border border-foreground/10 shrink-0 relative overflow-hidden">
              <div className="absolute inset-0 bg-[radial-gradient(circle,_rgba(204,255,0,0.2)_0%,_transparent_70%)]" />
-             <Zap className="w-8 h-8 text-neon" />
+             <Zap className="w-8 h-8 text-neon relative z-10" />
           </div>
           <div className="overflow-hidden">
             <h3 className="text-xl font-bold truncate">@{session?.user?.user_metadata?.username || 'STEPSOCIETY'}</h3>
             <p className="text-xs text-neon tracking-widest uppercase font-bold mt-1 max-w-[200px] md:max-w-none truncate">Level 1 Artifact Collector</p>
+            <p className="text-[10px] text-foreground/50 mt-1 uppercase font-mono tracking-widest">Joined {createdAt}</p>
           </div>
+        </div>
+
+        <div className="space-y-4">
+          <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500">Preferences</h4>
+          <button 
+            onClick={toggleTheme}
+            className="w-full flex items-center justify-between p-4 glass-card hover-neon-glow group"
+          >
+            <div className="flex items-center gap-3">
+              {isLightMode ? <Sun className="w-5 h-5 text-yellow-500" /> : <Moon className="w-5 h-5 text-neon" />}
+              <div className="text-left">
+                <p className="font-bold">{isLightMode ? 'Light Mode' : 'Dark Mode'}</p>
+                <p className="text-xs text-foreground/40">Toggle app appearance theme</p>
+              </div>
+            </div>
+          </button>
         </div>
 
         <div className="space-y-4">
@@ -120,7 +145,7 @@ export default function Profile() {
                    type="email"
                    value={newEmail}
                    onChange={(e) => setNewEmail(e.target.value)}
-                   className="w-full bg-black/50 border border-white/10 rounded-xl h-12 px-4 text-sm focus:outline-none focus:border-neon focus:ring-1 focus:ring-neon transition-all"
+                   className="w-full bg-black/10 dark:bg-black/50 border border-foreground/10 rounded-xl h-12 px-4 text-sm focus:outline-none focus:border-neon focus:ring-1 focus:ring-neon transition-all"
                    placeholder="Enter new email"
                 />
              </div>
@@ -130,14 +155,14 @@ export default function Profile() {
                    type="password"
                    value={newPassword}
                    onChange={(e) => setNewPassword(e.target.value)}
-                   className="w-full bg-black/50 border border-white/10 rounded-xl h-12 px-4 text-sm focus:outline-none focus:border-neon focus:ring-1 focus:ring-neon transition-all"
+                   className="w-full bg-black/10 dark:bg-black/50 border border-foreground/10 rounded-xl h-12 px-4 text-sm focus:outline-none focus:border-neon focus:ring-1 focus:ring-neon transition-all"
                    placeholder="Enter new password"
                 />
              </div>
              <button 
                 type="submit"
                 disabled={updatingAuth || (!newPassword && newEmail === session?.user?.email)}
-                className="h-12 px-6 bg-surface text-white border border-white/10 font-bold uppercase text-[10px] tracking-widest rounded-xl hover:bg-white/5 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+                className="h-12 px-6 bg-surface text-foreground border border-foreground/10 font-bold uppercase text-[10px] tracking-widest rounded-xl hover:bg-foreground/5 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
              >
                 {updatingAuth ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                 Save Changes
@@ -153,10 +178,10 @@ export default function Profile() {
             className="w-full flex items-center justify-between p-4 glass-card hover-neon-glow group disabled:opacity-50 disabled:pointer-events-none"
           >
             <div className="flex items-center gap-3">
-              <LibrarySquare className="w-5 h-5 text-white/50 group-hover:text-neon transition-colors" />
+              <LibrarySquare className="w-5 h-5 text-foreground/50 group-hover:text-neon transition-colors" />
               <div className="text-left">
                 <p className="font-bold">Export JSON Archive</p>
-                <p className="text-xs text-white/40">{shoes.length} artifacts encoded</p>
+                <p className="text-xs text-foreground/40">{shoes.length} artifacts encoded</p>
               </div>
             </div>
             <Download className="w-5 h-5 text-zinc-500" />

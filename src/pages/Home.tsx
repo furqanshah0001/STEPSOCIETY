@@ -45,7 +45,7 @@ export function Home() {
           </div>
           <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-zinc-500 mb-2">The Vault</h3>
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl md:text-5xl font-black tracking-tighter text-white">{shoes.length}</span>
+            <span className="text-3xl md:text-5xl font-black tracking-tighter text-foreground">{shoes.length}</span>
             <span className="hidden md:inline text-neon text-xs font-black uppercase tracking-widest">Pairs</span>
           </div>
         </div>
@@ -58,7 +58,7 @@ export function Home() {
         <div className="glass-card rounded-2xl p-4 md:p-8 flex flex-col justify-between relative overflow-hidden">
           <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-zinc-500 mb-2">Footprint</h3>
           <div className="flex items-baseline gap-1">
-            <span className="text-xl md:text-4xl font-black tracking-tighter text-white">{(lifetimeSteps / 1000).toFixed(1)}k</span>
+            <span className="text-xl md:text-4xl font-black tracking-tighter text-foreground">{(lifetimeSteps / 1000).toFixed(1)}k</span>
           </div>
         </div>
       </section>
@@ -77,7 +77,7 @@ export function Home() {
               placeholder="SEARCH VAULT..." 
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full sm:w-64 h-12 bg-[#1A1A1A] border border-white/10 rounded-full pl-10 pr-4 text-xs font-mono text-white focus:border-neon focus:ring-1 focus:ring-neon outline-none transition-all placeholder:text-white/30 hover:border-white/20"
+              className="w-full sm:w-64 h-12 bg-surface border border-foreground/10 rounded-full pl-10 pr-4 text-xs font-mono text-foreground focus:border-neon focus:ring-1 focus:ring-neon outline-none transition-all placeholder:text-foreground/30 hover:border-foreground/20"
             />
           </div>
         </div>
@@ -94,7 +94,7 @@ export function Home() {
                 "whitespace-nowrap px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all",
                 activeFilter === tag 
                   ? "bg-neon text-black" 
-                  : "bg-surface border border-white/10 text-white/50 hover:text-white hover:border-white/30"
+                  : "bg-surface border border-foreground/10 text-foreground/50 hover:text-foreground hover:border-white/30"
               )}
             >
               {tag}
@@ -105,10 +105,10 @@ export function Home() {
 
       {/* Shoe Grid / Empty State */}
       {shoes.length === 0 ? (
-        <div className="text-center py-20 px-6 bg-[#1A1A1A] rounded-[32px] border border-white/5 relative overflow-hidden">
+        <div className="text-center py-20 px-6 bg-surface rounded-[32px] border border-foreground/5 relative overflow-hidden">
           <div className="absolute inset-0 pattern-bg opacity-50" />
           <div className="relative z-10 flex flex-col items-center">
-            <div className="w-24 h-24 mb-6 rounded-full bg-surface border border-white/10 flex items-center justify-center relative shadow-[0_0_50px_rgba(204,255,0,0.1)]">
+            <div className="w-24 h-24 mb-6 rounded-full bg-surface border border-foreground/10 flex items-center justify-center relative shadow-[0_0_50px_rgba(204,255,0,0.1)]">
                <Layers className="w-10 h-10 text-neon" />
             </div>
             <h3 className="text-2xl font-black italic uppercase tracking-tighter mb-2">Vault is Empty</h3>
@@ -122,7 +122,7 @@ export function Home() {
       ) : isLoading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {[1,2,3].map(i => (
-            <div key={i} className="aspect-[4/5] bg-surface/50 border border-white/5 rounded-2xl animate-pulse" />
+            <div key={i} className="aspect-[4/5] bg-surface/50 border border-foreground/5 rounded-2xl animate-pulse" />
           ))}
         </div>
       ) : filteredShoes.length === 0 ? (
@@ -148,7 +148,7 @@ export function Home() {
                       alt={shoe.name} 
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
                     />
-                    <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
+                    <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-foreground/10">
                       <span className="text-[10px] font-black text-neon uppercase tracking-widest">Wears: {shoe.wearCount}</span>
                     </div>
                     {shoe.verified && (
@@ -160,8 +160,8 @@ export function Home() {
                   </div>
                   <div className="p-6 space-y-4">
                     <div>
-                      <p className="text-[10px] font-mono text-white/50 uppercase tracking-[0.2em] mb-1">{shoe.brand}</p>
-                      <h3 className="text-xl font-black italic tracking-tighter text-white line-clamp-1">{shoe.name}</h3>
+                      <p className="text-[10px] font-mono text-foreground/50 uppercase tracking-[0.2em] mb-1">{shoe.brand}</p>
+                      <h3 className="text-xl font-black italic tracking-tighter text-foreground line-clamp-1">{shoe.name}</h3>
                     </div>
                     <div className="flex flex-wrap gap-2">
                        {shoe.tags.slice(0, 3).map((tag) => (
@@ -170,7 +170,7 @@ export function Home() {
                         </span>
                       ))}
                       {shoe.tags.length > 3 && (
-                        <span className="px-2.5 py-1 text-[9px] font-black uppercase bg-white/10 text-white rounded-full tracking-widest">
+                        <span className="px-2.5 py-1 text-[9px] font-black uppercase bg-foreground/10 text-foreground rounded-full tracking-widest">
                           +{shoe.tags.length - 3}
                         </span>
                       )}

@@ -101,7 +101,7 @@ export function AddShoe() {
       <form onSubmit={handleSave} className="space-y-8">
         {/* Photo Upload Container */}
         <div 
-          className="relative group cursor-pointer aspect-square sm:aspect-video w-full rounded-2xl overflow-hidden border border-white/10 bg-surface flex flex-col items-center justify-center transition-all hover:bg-surface-hover"
+          className="relative group cursor-pointer aspect-square sm:aspect-video w-full rounded-2xl overflow-hidden border border-foreground/10 bg-surface flex flex-col items-center justify-center transition-all hover:bg-surface-hover"
           onClick={() => fileInputRef.current?.click()}
         >
           {image ? (
@@ -110,9 +110,9 @@ export function AddShoe() {
             <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-50" />
           )}
 
-          <div className="relative z-10 flex flex-col items-center gap-4 p-6 bg-black/40 backdrop-blur-sm rounded-xl border border-white/5">
+          <div className="relative z-10 flex flex-col items-center gap-4 p-6 bg-black/40 backdrop-blur-sm rounded-xl border border-foreground/5">
             <div className="flex gap-4">
-              <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center shadow-2xl border border-white/10 group-hover:scale-110 group-hover:bg-neon group-hover:text-black transition-all">
+              <div className="w-16 h-16 rounded-full bg-foreground/10 flex items-center justify-center shadow-2xl border border-foreground/10 group-hover:scale-110 group-hover:bg-neon group-hover:text-black transition-all">
                 <Camera className="w-6 h-6" />
               </div>
             </div>
@@ -139,7 +139,7 @@ export function AddShoe() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Jordan 1 Retro High OG"
-              className="w-full bg-surface border border-white/5 rounded-xl h-16 px-6 text-xl font-bold focus:outline-none focus:border-neon/50 focus:ring-1 focus:ring-neon/30 transition-all placeholder:text-zinc-700"
+              className="w-full bg-surface border border-foreground/5 rounded-xl h-16 px-6 text-xl font-bold focus:outline-none focus:border-neon/50 focus:ring-1 focus:ring-neon/30 transition-all placeholder:text-zinc-700"
             />
           </div>
 
@@ -156,7 +156,7 @@ export function AddShoe() {
                     "px-5 py-3 rounded-xl text-sm font-bold border transition-all duration-300 uppercase tracking-widest",
                     brand === b 
                       ? "bg-neon text-black border-neon neon-shadow" 
-                      : "bg-surface text-zinc-400 border-white/5 hover:border-white/20"
+                      : "bg-surface text-zinc-400 border-foreground/5 hover:border-foreground/20"
                   )}
                 >
                   {b}
@@ -175,7 +175,7 @@ export function AddShoe() {
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
                   placeholder="0.00"
-                  className="w-full bg-surface border border-white/5 rounded-xl h-16 pl-12 pr-6 text-lg font-bold focus:outline-none focus:border-neon/50 focus:ring-1 focus:ring-neon/30 transition-all placeholder:text-zinc-700 appearance-none"
+                  className="w-full bg-surface border border-foreground/5 rounded-xl h-16 pl-12 pr-6 text-lg font-bold focus:outline-none focus:border-neon/50 focus:ring-1 focus:ring-neon/30 transition-all placeholder:text-zinc-700 appearance-none"
                 />
               </div>
             </div>
@@ -185,7 +185,7 @@ export function AddShoe() {
                 type="date"
                 value={purchaseDate}
                 onChange={(e) => setPurchaseDate(e.target.value)}
-                className="w-full bg-surface border border-white/5 rounded-xl h-16 px-6 text-sm font-bold focus:outline-none focus:border-neon/50 focus:ring-1 focus:ring-neon/30 transition-all text-white [&::-webkit-calendar-picker-indicator]:filter [&::-webkit-calendar-picker-indicator]:invert"
+                className="w-full bg-surface border border-foreground/5 rounded-xl h-16 px-6 text-sm font-bold focus:outline-none focus:border-neon/50 focus:ring-1 focus:ring-neon/30 transition-all text-foreground [&::-webkit-calendar-picker-indicator]:filter [&::-webkit-calendar-picker-indicator]:invert"
               />
             </div>
           </div>
@@ -208,7 +208,7 @@ export function AddShoe() {
                       "px-4 py-2 rounded-lg border text-xs font-bold uppercase tracking-tighter transition-all",
                       isSelected 
                         ? "bg-white text-black border-white shadow-[0_0_15px_rgba(255,255,255,0.3)] scale-105" 
-                        : "bg-surface border-white/5 text-zinc-400 hover:bg-surface-hover hover:border-white/20"
+                        : "bg-surface border-foreground/5 text-zinc-400 hover:bg-surface-hover hover:border-foreground/20"
                     )}
                   >
                     {tag}

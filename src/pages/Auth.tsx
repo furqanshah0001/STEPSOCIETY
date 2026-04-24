@@ -33,7 +33,8 @@ export function Auth() {
           options: {
             data: {
               username: username.trim()
-            }
+            },
+            emailRedirectTo: 'https://stepsociety.vercel.app/'
           }
         });
         if (error) throw error;
@@ -51,7 +52,7 @@ export function Auth() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] flex flex-col items-center justify-center p-6 relative overflow-hidden">
+    <div className="min-h-screen bg-background flex flex-col items-center justify-center p-6 relative overflow-hidden">
       {/* Background Elements */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-neon/5 rounded-full blur-[120px]" />
@@ -66,11 +67,11 @@ export function Auth() {
           <div className="w-16 h-16 bg-neon rounded-full flex items-center justify-center mb-6 shadow-[0_0_40px_rgba(204,255,0,0.3)]">
             <Zap className="w-8 h-8 text-black" fill="currentColor" />
           </div>
-          <h1 className="text-4xl font-black italic tracking-tighter uppercase text-white">STEPSOCIETY</h1>
-          <p className="text-white/50 text-sm tracking-widest uppercase font-bold mt-2">Vault Access</p>
+          <h1 className="text-4xl font-black italic tracking-tighter uppercase text-foreground">STEPSOCIETY</h1>
+          <p className="text-foreground/50 text-sm tracking-widest uppercase font-bold mt-2">Vault Access</p>
         </div>
 
-        <form onSubmit={handleAuth} className="glass-card p-8 rounded-[32px] space-y-6 border border-white/10 relative overflow-hidden">
+        <form onSubmit={handleAuth} className="glass-card p-8 rounded-[32px] space-y-6 border border-foreground/10 relative overflow-hidden">
           <div className="space-y-4">
             {!isLogin && (
               <motion.div
@@ -80,13 +81,13 @@ export function Auth() {
               >
                 <label className="block text-[10px] font-bold uppercase tracking-widest text-zinc-500 ml-1 mb-2">Username</label>
                 <div className="relative">
-                  <User className="w-5 h-5 text-white/30 absolute left-4 top-1/2 -translate-y-1/2" />
+                  <User className="w-5 h-5 text-foreground/30 absolute left-4 top-1/2 -translate-y-1/2" />
                   <input
                     type="text"
                     required={!isLogin}
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    className="w-full bg-black/50 border border-white/10 rounded-xl h-14 pl-12 pr-4 text-sm focus:outline-none focus:border-neon focus:ring-1 focus:ring-neon transition-all"
+                    className="w-full bg-black/50 border border-foreground/10 rounded-xl h-14 pl-12 pr-4 text-sm focus:outline-none focus:border-neon focus:ring-1 focus:ring-neon transition-all"
                     placeholder="Enter your username"
                   />
                 </div>
@@ -96,13 +97,13 @@ export function Auth() {
             <div>
               <label className="block text-[10px] font-bold uppercase tracking-widest text-zinc-500 ml-1 mb-2">Email Address</label>
               <div className="relative">
-                <Mail className="w-5 h-5 text-white/30 absolute left-4 top-1/2 -translate-y-1/2" />
+                <Mail className="w-5 h-5 text-foreground/30 absolute left-4 top-1/2 -translate-y-1/2" />
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-black/50 border border-white/10 rounded-xl h-14 pl-12 pr-4 text-sm focus:outline-none focus:border-neon focus:ring-1 focus:ring-neon transition-all"
+                  className="w-full bg-black/50 border border-foreground/10 rounded-xl h-14 pl-12 pr-4 text-sm focus:outline-none focus:border-neon focus:ring-1 focus:ring-neon transition-all"
                   placeholder="Enter your email"
                 />
               </div>
@@ -111,13 +112,13 @@ export function Auth() {
             <div>
               <label className="block text-[10px] font-bold uppercase tracking-widest text-zinc-500 ml-1 mb-2">Password</label>
               <div className="relative">
-                <Lock className="w-5 h-5 text-white/30 absolute left-4 top-1/2 -translate-y-1/2" />
+                <Lock className="w-5 h-5 text-foreground/30 absolute left-4 top-1/2 -translate-y-1/2" />
                 <input
                   type="password"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full bg-black/50 border border-white/10 rounded-xl h-14 pl-12 pr-4 text-sm focus:outline-none focus:border-neon focus:ring-1 focus:ring-neon transition-all"
+                  className="w-full bg-black/50 border border-foreground/10 rounded-xl h-14 pl-12 pr-4 text-sm focus:outline-none focus:border-neon focus:ring-1 focus:ring-neon transition-all"
                   placeholder="••••••••"
                 />
               </div>
@@ -136,7 +137,7 @@ export function Auth() {
              <button
                 type="button"
                 onClick={() => setIsLogin(!isLogin)}
-                className="text-xs text-white/50 hover:text-white transition-colors"
+                className="text-xs text-foreground/50 hover:text-foreground transition-colors"
              >
                 {isLogin ? "Don't have an account? Sign up" : "Already have an account? Log in"}
              </button>

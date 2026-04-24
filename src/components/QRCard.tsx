@@ -67,7 +67,7 @@ export function QRCard({ shoe, onClose }: { shoe: Shoe, onClose: () => void }) {
       className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-3xl flex flex-col pt-6 md:pt-12 px-6 pattern-bg"
     >
       <div className="flex justify-between items-center max-w-md mx-auto w-full mb-8 shrink-0">
-        <button onClick={onClose} className="p-3 bg-white/10 rounded-full hover:bg-white/20 transition-colors">
+        <button onClick={onClose} className="p-3 bg-foreground/10 rounded-full hover:bg-white/20 transition-colors">
           <X className="w-6 h-6" />
         </button>
         <span className="text-[10px] font-black tracking-[0.3em] uppercase text-neon">Stepped Code</span>
@@ -78,7 +78,7 @@ export function QRCard({ shoe, onClose }: { shoe: Shoe, onClose: () => void }) {
         {/* The Card for Export */}
         <div 
           ref={cardRef}
-          className="relative w-[340px] h-[480px] bg-gradient-to-br from-[#1A1A1A] to-[#000] border border-white/10 rounded-[32px] shadow-[0_0_100px_rgba(204,255,0,0.15)] p-8 flex flex-col justify-between overflow-hidden shrink-0"
+          className="relative w-[340px] h-[480px] bg-gradient-to-br from-[#1A1A1A] to-[#000] border border-foreground/10 rounded-[32px] shadow-[0_0_100px_rgba(204,255,0,0.15)] p-8 flex flex-col justify-between overflow-hidden shrink-0"
         >
           {/* Subtle floating background layer */}
           <div className="absolute inset-0 z-0">
@@ -107,7 +107,7 @@ export function QRCard({ shoe, onClose }: { shoe: Shoe, onClose: () => void }) {
                  <img src={shoe.image} className="w-full h-full object-cover rounded-3xl scale-y-[-1] opacity-30 mt-2 reflection-mask" />
               </div>
 
-              <div className="w-40 h-40 bg-white rounded-[24px] shadow-2xl flex items-center justify-center border border-white/50 p-2 rotate-[-8deg] z-10 backdrop-blur-xl bg-white/90">
+              <div className="w-40 h-40 bg-white rounded-[24px] shadow-2xl flex items-center justify-center border border-foreground/50 p-2 rotate-[-8deg] z-10 backdrop-blur-xl bg-white/90">
                 <QRCode 
                   value={shareUrl} 
                   size={160}
@@ -125,7 +125,7 @@ export function QRCard({ shoe, onClose }: { shoe: Shoe, onClose: () => void }) {
               {shoe.tags.slice(0, 3).map((tag, i) => (
                 <span key={tag} className={cn(
                   "px-3 py-1 text-[9px] font-black uppercase rounded-full tracking-widest",
-                   i === 0 ? "bg-neon text-black" : "bg-[#1A1A1A] border border-white/10 text-white"
+                   i === 0 ? "bg-neon text-black" : "bg-surface border border-foreground/10 text-foreground"
                 )}>
                   {tag}
                 </span>
@@ -162,7 +162,7 @@ export function QRCard({ shoe, onClose }: { shoe: Shoe, onClose: () => void }) {
             </button>
             <button 
               onClick={handleShare}
-              className="flex-1 h-14 bg-[#1A1A1A] text-white font-black uppercase tracking-widest rounded-2xl flex items-center justify-center gap-2 border border-white/20 hover:bg-[#222] active:scale-95 transition-all"
+              className="flex-1 h-14 bg-surface text-foreground font-black uppercase tracking-widest rounded-2xl flex items-center justify-center gap-2 border border-foreground/20 hover:bg-[#222] active:scale-95 transition-all"
             >
               <Share className="w-5 h-5" />
               Share
@@ -170,7 +170,7 @@ export function QRCard({ shoe, onClose }: { shoe: Shoe, onClose: () => void }) {
           </div>
           <button 
             onClick={() => handleDownload(storyRef, 'ig-story')}
-            className="w-full h-14 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 text-white font-black uppercase tracking-widest rounded-2xl flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-all shadow-[0_0_20px_rgba(236,72,153,0.3)]"
+            className="w-full h-14 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 text-foreground font-black uppercase tracking-widest rounded-2xl flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-all shadow-[0_0_20px_rgba(236,72,153,0.3)]"
           >
             <Instagram className="w-5 h-5" />
             Export as IG Story
@@ -181,7 +181,7 @@ export function QRCard({ shoe, onClose }: { shoe: Shoe, onClose: () => void }) {
         <div className="fixed overflow-hidden pointer-events-none opacity-0 left-[-9999px]">
           <div 
             ref={storyRef}
-            className="w-[1080px] h-[1920px] bg-[#0A0A0A] relative flex flex-col items-center justify-center p-20 overflow-hidden"
+            className="w-[1080px] h-[1920px] bg-background relative flex flex-col items-center justify-center p-20 overflow-hidden"
           >
             {/* Background Image Blurred */}
             <div className="absolute inset-0">
@@ -191,12 +191,12 @@ export function QRCard({ shoe, onClose }: { shoe: Shoe, onClose: () => void }) {
 
             {/* SteppedIn Header */}
             <div className="absolute top-20 left-0 w-full flex justify-center z-10">
-               <span className="text-4xl font-black italic tracking-tighter uppercase text-white tracking-[0.2em]">STEPSOCIETY</span>
+               <span className="text-4xl font-black italic tracking-tighter uppercase text-foreground tracking-[0.2em]">STEPSOCIETY</span>
             </div>
 
             {/* Reused QR Card layout inside story */}
             <div className="scale-[1.8] transform origin-center z-10 relative mt-20">
-              <div className="relative w-[340px] h-[480px] bg-gradient-to-br from-[#1A1A1A] to-[#000] border border-white/20 rounded-[32px] shadow-[0_40px_100px_rgba(0,0,0,0.8)] p-8 flex flex-col justify-between overflow-hidden shrink-0">
+              <div className="relative w-[340px] h-[480px] bg-gradient-to-br from-[#1A1A1A] to-[#000] border border-foreground/20 rounded-[32px] shadow-[0_40px_100px_rgba(0,0,0,0.8)] p-8 flex flex-col justify-between overflow-hidden shrink-0">
                 <div className="absolute inset-0 z-0">
                   <img src={shoe.image} alt="" className="w-full h-full object-cover opacity-10 grayscale mix-blend-screen blur-md" />
                 </div>
@@ -217,7 +217,7 @@ export function QRCard({ shoe, onClose }: { shoe: Shoe, onClose: () => void }) {
                       <img src={shoe.image} className="w-full h-full object-cover rounded-3xl" />
                       <img src={shoe.image} className="w-full h-full object-cover rounded-3xl scale-y-[-1] opacity-30 mt-2 filter blur-[2px]" />
                     </div>
-                    <div className="w-40 h-40 bg-white rounded-[24px] shadow-2xl flex items-center justify-center border border-white/50 p-2 rotate-[-8deg] z-10 backdrop-blur-xl bg-white/90">
+                    <div className="w-40 h-40 bg-white rounded-[24px] shadow-2xl flex items-center justify-center border border-foreground/50 p-2 rotate-[-8deg] z-10 backdrop-blur-xl bg-white/90">
                       <QRCode 
                         value={shareUrl} 
                         size={160}
@@ -235,7 +235,7 @@ export function QRCard({ shoe, onClose }: { shoe: Shoe, onClose: () => void }) {
                     {shoe.tags.slice(0, 3).map((tag, i) => (
                       <span key={tag} className={cn(
                         "px-3 py-1 text-[9px] font-black uppercase rounded-full tracking-widest",
-                        i === 0 ? "bg-neon text-black" : "bg-[#1A1A1A] border border-white/10 text-white"
+                        i === 0 ? "bg-neon text-black" : "bg-surface border border-foreground/10 text-foreground"
                       )}>
                         {tag}
                       </span>
@@ -247,7 +247,7 @@ export function QRCard({ shoe, onClose }: { shoe: Shoe, onClose: () => void }) {
             </div>
             
             <div className="absolute bottom-32 w-full text-center z-10">
-               <p className="text-white/30 text-2xl font-mono uppercase tracking-[0.4em]">Scan to Collect</p>
+               <p className="text-foreground/30 text-2xl font-mono uppercase tracking-[0.4em]">Scan to Collect</p>
             </div>
           </div>
         </div>

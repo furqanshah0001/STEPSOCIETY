@@ -59,12 +59,12 @@ export function ShoeDetail() {
       className="pb-32 min-h-screen"
     >
       {/* Hero Image Section */}
-      <div className="relative aspect-square md:aspect-[21/9] w-full bg-black overflow-hidden border-b border-[#1A1A1A]">
+      <div className="relative aspect-square md:aspect-[21/9] w-full bg-black overflow-hidden border-b border-surface">
         <button 
           onClick={() => navigate(-1)} 
-          className="absolute top-6 left-6 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-black/40 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-colors hover-neon-glow"
+          className="absolute top-6 left-6 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-black/40 backdrop-blur-md border border-foreground/10 hover:bg-foreground/10 transition-colors hover-neon-glow"
         >
-          <ArrowLeft className="w-6 h-6 text-white" />
+          <ArrowLeft className="w-6 h-6 text-foreground" />
         </button>
 
         {shoe.verified && (
@@ -86,14 +86,14 @@ export function ShoeDetail() {
       <div className="max-w-4xl mx-auto px-6 -mt-32 relative z-10 space-y-12">
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <span className="px-4 py-2 bg-[#1A1A1A] backdrop-blur-md border border-white/10 rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-neon shadow-[0_0_15px_rgba(204,255,0,0.1)]">
+            <span className="px-4 py-2 bg-surface backdrop-blur-md border border-foreground/10 rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-neon shadow-[0_0_15px_rgba(204,255,0,0.1)]">
               {shoe.brand}
             </span>
-            <div className="px-4 py-2 bg-surface border border-white/5 rounded-full text-xs font-bold uppercase tracking-widest text-zinc-300">
+            <div className="px-4 py-2 bg-surface border border-foreground/5 rounded-full text-xs font-bold uppercase tracking-widest text-zinc-300">
               Acquired: {format(new Date(shoe.purchaseDate), 'MMM yyyy')}
             </div>
           </div>
-          <h1 className="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-none text-white drop-shadow-2xl flex items-center gap-4 flex-wrap">
+          <h1 className="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-none text-foreground drop-shadow-2xl flex items-center gap-4 flex-wrap">
             {shoe.name}
             {shoe.verified && (
               <span className="w-8 h-8 rounded-full bg-neon flex flex-shrink-0 items-center justify-center -translate-y-2">
@@ -131,29 +131,29 @@ export function ShoeDetail() {
                   setEditNotes(shoe.cleaningNotes ?? '');
                   setIsEditingLog(true);
                 }}
-                className="text-[10px] flex items-center gap-1 text-neon font-bold uppercase tracking-widest hover:text-white transition-colors"
+                className="text-[10px] flex items-center gap-1 text-neon font-bold uppercase tracking-widest hover:text-foreground transition-colors"
               >
                 <Edit2 className="w-3 h-3" /> Edit Log
               </button>
             )}
           </div>
-          <div className="p-6 glass-card rounded-2xl border border-white/5 space-y-6">
+          <div className="p-6 glass-card rounded-2xl border border-foreground/5 space-y-6">
             {!isEditingLog ? (
               <div>
                 <div className="flex justify-between items-end mb-2">
-                  <span className="text-xs font-bold text-white/70 uppercase">Condition Level</span>
+                  <span className="text-xs font-bold text-foreground/70 uppercase">Condition Level</span>
                   <span className="text-sm font-black text-neon">{shoe.condition ?? 100}%</span>
                 </div>
-                <div className="w-full bg-[#1A1A1A] h-2 rounded-full overflow-hidden">
+                <div className="w-full bg-surface h-2 rounded-full overflow-hidden">
                   <div className="bg-neon h-full transition-all duration-500" style={{ width: `${shoe.condition ?? 100}%` }}></div>
                 </div>
                 
                 {shoe.cleaningNotes ? (
-                  <p className="mt-4 text-xs text-white/70 bg-[#1A1A1A] p-4 rounded-lg border border-white/5 leading-relaxed">
+                  <p className="mt-4 text-xs text-foreground/70 bg-surface p-4 rounded-lg border border-foreground/5 leading-relaxed">
                     {shoe.cleaningNotes}
                   </p>
                 ) : (
-                  <p className="mt-4 text-xs font-mono text-white/50 bg-[#1A1A1A] p-3 rounded-lg border border-white/5">
+                  <p className="mt-4 text-xs font-mono text-foreground/50 bg-surface p-3 rounded-lg border border-foreground/5">
                     {(shoe.condition ?? 100) < 50 ? `Time to clean those ${shoe.name}! They're looking worn.` : `Looking sharp. Keep those ${shoe.name} fresh.`}
                   </p>
                 )}
@@ -167,7 +167,7 @@ export function ShoeDetail() {
               <div className="space-y-6">
                 <div>
                   <div className="flex justify-between items-end mb-4">
-                    <span className="text-xs font-bold text-white/70 uppercase">Edit Condition Level</span>
+                    <span className="text-xs font-bold text-foreground/70 uppercase">Edit Condition Level</span>
                     <span className="text-sm font-black text-neon">{editCondition}%</span>
                   </div>
                   <input 
@@ -180,12 +180,12 @@ export function ShoeDetail() {
                   />
                 </div>
                 <div>
-                  <label className="text-xs font-bold text-white/70 uppercase flex mb-2">Maintenance Notes</label>
+                  <label className="text-xs font-bold text-foreground/70 uppercase flex mb-2">Maintenance Notes</label>
                   <textarea
                     value={editNotes}
                     onChange={(e) => setEditNotes(e.target.value)}
                     placeholder="E.g., Used crep protect, scrubbed the soles..."
-                    className="w-full bg-black/50 border border-white/10 rounded-xl p-4 text-sm focus:outline-none focus:border-neon focus:ring-1 focus:ring-neon transition-all placeholder:text-zinc-700 min-h-[100px]"
+                    className="w-full bg-black/50 border border-foreground/10 rounded-xl p-4 text-sm focus:outline-none focus:border-neon focus:ring-1 focus:ring-neon transition-all placeholder:text-zinc-700 min-h-[100px]"
                   />
                 </div>
                 <div className="flex gap-2">
@@ -209,13 +209,13 @@ export function ShoeDetail() {
                       setIsEditingLog(false);
                       toast('Maintenance log cleared');
                     }}
-                    className="flex-1 h-12 bg-red-500/10 text-red-500 font-black uppercase text-xs tracking-widest rounded-xl hover:bg-red-500 hover:text-white transition-colors flex items-center justify-center gap-2 border border-red-500/20"
+                    className="flex-1 h-12 bg-red-500/10 text-red-500 font-black uppercase text-xs tracking-widest rounded-xl hover:bg-red-500 hover:text-foreground transition-colors flex items-center justify-center gap-2 border border-red-500/20"
                   >
                     <Trash2 className="w-4 h-4" /> Delete Log
                   </button>
                   <button 
                     onClick={() => setIsEditingLog(false)}
-                    className="w-12 h-12 bg-surface text-white border border-white/10 rounded-xl hover:bg-white/10 transition-colors flex items-center justify-center"
+                    className="w-12 h-12 bg-surface text-foreground border border-foreground/10 rounded-xl hover:bg-foreground/10 transition-colors flex items-center justify-center"
                   >
                     <CloseIcon className="w-4 h-4" />
                   </button>
@@ -230,7 +230,7 @@ export function ShoeDetail() {
           <h3 className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Aesthetic Signatures</h3>
           <div className="flex flex-wrap gap-2">
             {shoe.tags.map(tag => (
-              <span key={tag} className="px-5 py-3 glass-card rounded-xl text-xs font-bold uppercase tracking-widest text-zinc-300 border-white/10 hover-neon-glow hover:text-neon">
+              <span key={tag} className="px-5 py-3 glass-card rounded-xl text-xs font-bold uppercase tracking-widest text-zinc-300 border-foreground/10 hover-neon-glow hover:text-neon">
                 {tag}
               </span>
             ))}
@@ -238,7 +238,7 @@ export function ShoeDetail() {
         </div>
 
         {/* Actions Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-8 border-t border-[#1A1A1A]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-8 border-t border-surface">
           <button 
             onClick={() => setShowQR(true)}
             className="h-16 flex items-center justify-center gap-3 bg-neon text-black font-black uppercase tracking-[0.2em] rounded-2xl hover:scale-[1.02] active:scale-95 transition-all shadow-[0_0_30px_rgba(204,255,0,0.15)] hover-neon-glow"
@@ -249,7 +249,7 @@ export function ShoeDetail() {
           
           <button 
             onClick={handleDelete}
-            className="h-16 flex items-center justify-center gap-3 bg-red-500/10 text-red-500 font-bold uppercase tracking-[0.2em] rounded-2xl border border-red-500/20 hover:bg-red-500 hover:text-white transition-all hover:shadow-[0_0_20px_rgba(239,68,68,0.2)]"
+            className="h-16 flex items-center justify-center gap-3 bg-red-500/10 text-red-500 font-bold uppercase tracking-[0.2em] rounded-2xl border border-red-500/20 hover:bg-red-500 hover:text-foreground transition-all hover:shadow-[0_0_20px_rgba(239,68,68,0.2)]"
           >
             <Trash2 className="w-5 h-5" />
             Purge Artifact

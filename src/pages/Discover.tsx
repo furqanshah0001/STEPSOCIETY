@@ -27,8 +27,8 @@ export function Discover() {
         <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-neon flex items-center justify-center gap-2">
           <Instagram className="w-4 h-4" /> Official feed
         </span>
-        <h2 className="text-4xl md:text-6xl font-black tracking-tighter leading-none uppercase text-white">@stepped.in</h2>
-        <p className="text-white/50 text-xs uppercase tracking-widest mt-2 max-w-sm">
+        <h2 className="text-4xl md:text-6xl font-black tracking-tighter leading-none uppercase text-foreground">@stepped.in</h2>
+        <p className="text-foreground/50 text-xs uppercase tracking-widest mt-2 max-w-sm">
           Live API access requires authentication. Showing community placeholders.
         </p>
       </div>
@@ -45,7 +45,7 @@ export function Discover() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: index * 0.05 }}
-              className="group aspect-square relative overflow-hidden bg-[#1A1A1A] rounded-xl cursor-pointer"
+              className="group aspect-square relative overflow-hidden bg-surface rounded-xl cursor-pointer"
             >
               <img 
                 src={post.image} 
@@ -55,12 +55,12 @@ export function Discover() {
               
               {/* Instagram Hover Overlay */}
               <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-6">
-                <div className="flex items-center gap-2 text-white font-bold">
+                <div className="flex items-center gap-2 text-foreground font-bold">
                   <Heart className="w-6 h-6 fill-white" />
                   <span>{post.likes > 999 ? (post.likes/1000).toFixed(1) + 'k' : post.likes}</span>
                 </div>
-                <div className="flex items-center gap-2 text-white font-bold">
-                  <MessageCircle className="w-6 h-6 fill-white text-white" />
+                <div className="flex items-center gap-2 text-foreground font-bold">
+                  <MessageCircle className="w-6 h-6 fill-white text-foreground" />
                   <span>{post.comments}</span>
                 </div>
               </div>
@@ -75,7 +75,7 @@ export function Discover() {
           rel="noopener noreferrer"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className="flex items-center justify-center gap-3 w-full h-20 bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] text-white font-black uppercase tracking-[0.2em] rounded-2xl transition-all shadow-[0_10px_40px_-10px_rgba(253,29,29,0.5)] text-lg md:text-xl"
+          className="flex items-center justify-center gap-3 w-full h-20 bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] text-foreground font-black uppercase tracking-[0.2em] rounded-2xl transition-all shadow-[0_10px_40px_-10px_rgba(253,29,29,0.5)] text-lg md:text-xl"
         >
           <Instagram className="w-6 h-6 md:w-8 md:h-8" />
           OPEN INSTAGRAM
