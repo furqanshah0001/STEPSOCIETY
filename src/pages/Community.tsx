@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { supabase } from '../lib/supabase';
 import { Shoe } from '../types';
-import { Globe, Heart, Check, Search, Zap, ArrowDownAZ, SortDesc, CalendarDays } from 'lucide-react';
+import { Globe, Heart, Check, Search, Zap, ArrowDownAZ, SortDesc, CalendarDays, Database } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { cn } from '../lib/utils';
 import { format } from 'date-fns';
@@ -18,6 +18,7 @@ export function Community() {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<SortOption>('date');
   const [currentUserId, setCurrentUserId] = useState<string | null>(null);
+  const [needsMigration, setNeedsMigration] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -32,9 +33,26 @@ export function Community() {
         .eq('is_public', true)
         .order('createdAt', { ascending: false });
         
+      if (shoesError) {
+        console.error('Error fetching community shoes:', shoesError);
+        // Postgres error code 42703 (undefined column) or 42P01 (undefined table)
+        if (shoesError.code === '42703' || shoesError.code === '42P01') {
+           setNeedsMigration(true);
+        } else {
+           toast.error('Failed to load community feed');
+        }
+      }
+
       const { data: likesData, error: likesError } = await supabase
         .from('shoe_likes')
         .select('*');
+
+      if (likesError) {
+        console.error('Error fetching likes:', likesError);
+        if (likesError.code === '42P01') {
+           setNeedsMigration(true);
+        }
+      }
 
       if (!shoesError && shoesData) {
         setCommunityShoes(shoesData);
@@ -132,6 +150,23 @@ export function Community() {
       </div>
 
       <div className="relative z-10 w-full max-w-xl mx-auto space-y-4">
+        {needsMigration && (
+          <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-6 text-center animate-pulse-slow">
+            <Database className="w-8 h-8 text-red-500 mx-auto mb-3" />
+            <h3 className="text-red-500 font-bold uppercase tracking-widest mb-2">Database Update Required</h3>
+            <p className="text-sm text-foreground/70 mb-4">
+              To use the Community features, you need to run the updated <code>supabase-setup.sql</code> in your Supabase SQL Editor to create the necessary tables and policies.
+            </p>
+            <a 
+               href="https://supabase.com/dashboard/project/_/sql/new" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               className="inline-block bg-red-500 text-white font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-full hover:bg-red-400 transition-colors"
+            >
+              Open Supabase Dashboard
+            </a>
+          </div>
+        )}
         <div className="relative flex items-center">
           <Search className="absolute left-6 w-5 h-5 text-foreground/40" />
           <input
@@ -208,9 +243,9 @@ export function Community() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
                   
-                  <div className="absolute top-4 left-4 flex gap-2">
+                  <div className="absolute top-4 left-4 flex gap-2 z-20">
                     <div className="bg-background/60 backdrop-blur-md px-3 py-1 rounded-full border border-foreground/10 text-[10px] font-bold text-foreground/80 flex items-center gap-2 uppercase tracking-widest">
-                      <Globe className="w-3 h-3" /> @{shoe.owner_name}
+                      <Globe className="w-3 h-3" /> @{shoe.owner_name || 'Anonymous'}
                     </div>
                   </div>
 
