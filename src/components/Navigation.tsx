@@ -1,10 +1,12 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Home, PlusSquare, User, Zap, Globe } from 'lucide-react';
+import { Home, PlusSquare, User, Zap, Globe, Sun, Moon } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { motion } from 'framer-motion';
+import { useThemeStore } from '../store/themeStore';
 
 export function Navigation() {
   const location = useLocation();
+  const { isLightMode, toggleTheme } = useThemeStore();
 
   const links = [
     { href: '/', label: 'Vault', icon: Home },
@@ -43,6 +45,13 @@ export function Navigation() {
             })}
           </div>
           <div className="flex items-center space-x-4">
+            <button 
+              onClick={toggleTheme}
+              className="p-2 rounded-lg border bg-surface border-foreground/10 text-foreground hover:bg-foreground/10 hover:border-foreground/20 transition-all duration-300"
+              aria-label="Toggle theme"
+            >
+              {isLightMode ? <Sun className="w-5 h-5 text-yellow-500" /> : <Moon className="w-5 h-5 text-neon" />}
+            </button>
             <Link to="/profile" className={cn(
               "p-2 rounded-lg border transition-all duration-300",
               location.pathname === '/profile' 
@@ -56,7 +65,8 @@ export function Navigation() {
       </nav>
 
       {/* Mobile Top Header */}
-      <nav className="md:hidden fixed top-0 left-0 right-0 h-16 bg-surface/80 backdrop-blur-md border-b border-foreground/10 z-50 flex items-center justify-center">
+      <nav className="md:hidden fixed top-0 left-0 right-0 h-16 bg-surface/80 backdrop-blur-md border-b border-foreground/10 z-50 flex items-center justify-between px-6">
+        <div className="w-9" /> {/* Spacer for centering */}
         <Link to="/" className="flex items-center gap-2">
           <div className="w-6 h-6 bg-neon rounded-full flex items-center justify-center text-black">
             <Zap className="w-3 h-3" fill="currentColor" />
@@ -65,6 +75,13 @@ export function Navigation() {
             STEPSOCIETY
           </span>
         </Link>
+        <button 
+          onClick={toggleTheme}
+          className="p-2 rounded-lg text-foreground hover:bg-foreground/10 transition-all duration-300"
+          aria-label="Toggle theme"
+        >
+          {isLightMode ? <Sun className="w-5 h-5 text-yellow-500" /> : <Moon className="w-5 h-5 text-neon" />}
+        </button>
       </nav>
 
       {/* Mobile Bottom Nav */}
